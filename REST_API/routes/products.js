@@ -2,6 +2,10 @@ const express = require('express')
 const router = express.Router()
 const Product = require('../models/product')
 
+/* ---------------
+      ROUTES
+--------------- */
+
 // Getting All
 router.get('/', async(req, res) => {
     try {
@@ -69,21 +73,5 @@ router.delete('/:id', getProduct, async(req, res) => {
         res.status(500).json({ message: err.message })
     }
 });
-
-async function getProduct(req, res, next) {
-    let product
-
-    try {
-        product = await Product.findById(req.params.id)
-        if (product == null) {
-            return res.status(404).json({ message: 'Cannot find subscriber' })
-        }
-    } catch (err) {
-        return res.status(500).json({ message: err.message })
-    }
-
-    res.product = product
-    next()
-}
 
 module.exports = router
