@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import TextField from '@material-ui/core/TextField';
 
@@ -7,24 +7,22 @@ class Product extends React.Component {
     constructor(props) {
         super(props)
 
-        
-
         this.state = {
-            ProductState: "",
-            name: "",
-            type: "",
-            price: "",
-            rating: "",
-            warranty_years: "",
-            available: "",
-            idUpdate: "",
-            nameUpdate: "",
-            typeUpdate: "",
-            priceUpdate: "",
-            ratingUpdate: "",
-            warranty_yearsUpdate: "",
-            availableUpdate: "",
-            idDel: ""
+            ProductState: '',
+            name: '',
+            type: '',
+            price: '',
+            rating: '',
+            warranty_years: '',
+            available: '',
+            idUpdate: '',
+            nameUpdate: '',
+            typeUpdate: '',
+            priceUpdate: '',
+            ratingUpdate: '',
+            warranty_yearsUpdate: '',
+            availableUpdate: '',
+            idDel: ''
         }
     }
 
@@ -40,10 +38,6 @@ class Product extends React.Component {
             }).catch((err) => {
                 console.log(err);
             })
-    }
-
-    onPostDate() {
-        const { name, type, price, rating, warranty_years, available } = this.state;
     }
 
     postData() {
