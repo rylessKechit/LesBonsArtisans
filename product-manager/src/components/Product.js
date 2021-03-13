@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React/*, { useState }*/ from 'react'
 import axios from 'axios'
 import TextField from '@material-ui/core/TextField';
 
@@ -6,6 +6,11 @@ class Product extends React.Component {
 
     constructor(props) {
         super(props)
+
+        /* ---------------
+        Declaration of the variables that i wanted to use to connect my 
+        TextField with my 'data' array inside the functions, but it doesnt work ^^
+        --------------- */
 
         this.state = {
             ProductState: '',
@@ -26,10 +31,14 @@ class Product extends React.Component {
         }
     }
 
+    /* ---------------
+    componentDidMount() -> Get all Products inside yout Database's Table
+    --------------- */
+
     componentDidMount() {
         axios.get('http://localhost:3001/products')
             .then((data) => {
-                // console.log(data);
+                console.log(data);
                 this.setState({
                     ProductState: data
                 }, () => {
@@ -39,6 +48,12 @@ class Product extends React.Component {
                 console.log(err);
             })
     }
+
+    /* ---------------
+    postData() -> Create Product with informations given in the 'data' variable
+    (Working with manual declaration of data but doesnt work with
+    'this.state.*' still dont know why ^^)
+    --------------- */
 
     postData() {
 
@@ -61,9 +76,15 @@ class Product extends React.Component {
 
     }
 
-    onUpdateData() {
+    /*onUpdateData() {
         const { nameUpdate, typeUpdate, priceUpdate, ratingUpdate, warranty_yearsUpdate, availableUpdate } = this.state;
-    }
+    }*/
+
+    /* ---------------
+    updateData() -> Update Product with informations given in the 'data' variable
+    (Working with manual declaration of data but doesnt work with
+    'this.state.*' still dont know why ^^)
+    --------------- */
 
     updateData(id) {
 
@@ -88,9 +109,15 @@ class Product extends React.Component {
 
     }
 
-    onDetData() {
+    /*onDetData() {
         const { idDel } = this.state;
-    }
+    }*/
+
+    /* ---------------
+    delData() -> Delete Product with the 'id' given in the TextField
+    (Working with manual declaration of data but doesnt work with
+    'this.state.*' still dont know why ^^)
+    --------------- */
 
     delData() {
 
@@ -106,6 +133,8 @@ class Product extends React.Component {
             })
 
     }
+
+    // ----- View -----
 
     render() {
         return (

@@ -1,6 +1,11 @@
 const express = require('express')
 const Product = require('../models/productModel')
 
+/* ---------------
+Return informations of all Products inside the Database's table if worked and
+specific error message if isnt, in json
+--------------- */
+
 exports.get_all_product = async(req, res) => {
     try {
         const products = await Product.find()
@@ -10,11 +15,22 @@ exports.get_all_product = async(req, res) => {
     }
 }
 
+/* ---------------
+Return informations of specific Product by given his {id} if worked and
+specific error message if isnt, in json
+--------------- */
+
 exports.get_product_by_id = (req, res) => {
     res.json(res.product)
 }
 
+/* ---------------
+Create a Product and return informations of new Product if worked and
+specific error message if isnt, in json
+--------------- */
+
 exports.create_product = async(req, res) => {
+
     const product = new Product({
         name: req.body.name,
         type: req.body.type,
@@ -31,6 +47,11 @@ exports.create_product = async(req, res) => {
         res.status(400).json({ message: err.message })
     }
 }
+
+/* ---------------
+Update a specific Product given by {id} and return informations of updated Product if worked and
+specific error message if isnt, in json
+--------------- */
 
 exports.update_product_by_id = async(req, res) => {
     if (req.body.name != null) {
@@ -58,6 +79,11 @@ exports.update_product_by_id = async(req, res) => {
         res.status(400).json({ message: err.message })
     }
 }
+
+/* ---------------
+Delete a specific Product given by {id} and return informations of deleted Product if worked and
+specific error message if isnt, in json
+--------------- */
 
 exports.delete_product_by_id = async(req, res) => {
     try {

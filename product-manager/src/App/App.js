@@ -62,7 +62,7 @@ function App() {
     getProductData()
   },[])
 
-  // ----- 
+  // ----- View -----
 
   return (
     <div className="App">
