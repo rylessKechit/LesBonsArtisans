@@ -1,14 +1,14 @@
 # LesBonsArtisans
 
-Bonjour ! Vous pouvez trouvez dans ce repo, ma première **API** en *Node.js* et ma première page en *React.js* utilisant *Material-UI*
+Bonjour ! Vous pouvez trouvez dans ce repo, ma première **API** en *Node.js* utilisant *Express* et *MongoDB* ainsi que ma première page en *React.js* utilisant *Material-UI*
 
-
+Vous pouvez retrouver des images de l'application web dans le dossier `./app_pictures`, j'éspè que vous les trouverez à votre goût ^^
 
 ## API
 
 ### Model
 
-=> You can find the structure of the Product's Table inside the `REST_API/models/product.js`
+=> You can find the structure of the Product's Table inside the `REST_API/models/product.js`.
 
   ```js
   const productsSchema = new mongoose.Schema({
