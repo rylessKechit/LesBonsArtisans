@@ -50,7 +50,6 @@ function App() {
   const getProductData = async () => {
     try {
       const data = await axios.get('http://localhost:3001/products')
-      console.log(data.data);
       setProduct(data.data);
     }
     catch(e) {
@@ -86,6 +85,7 @@ function App() {
             <StyledTableCell>Product Price</StyledTableCell>
             <StyledTableCell>Product Rating</StyledTableCell>
             <StyledTableCell>Product Warranty Price</StyledTableCell>
+            <StyledTableCell>Available</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>

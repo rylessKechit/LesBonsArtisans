@@ -1,4 +1,4 @@
-import React/*, { useState }*/ from 'react'
+import React from 'react'
 import axios from 'axios'
 import TextField from '@material-ui/core/TextField';
 
@@ -8,26 +8,26 @@ class Product extends React.Component {
         super(props)
 
         /* ---------------
-        Declaration of the variables that i wanted to use to connect my 
-        TextField with my 'data' array inside the functions, but it doesnt work ^^
+        Declaration of the variables that I'll use to connect my 
+        TextField with my 'data' array inside the functions
         --------------- */
 
         this.state = {
-            ProductState: '',
-            name: '',
-            type: '',
-            price: '',
-            rating: '',
-            warranty_years: '',
-            available: '',
-            idUpdate: '',
-            nameUpdate: '',
-            typeUpdate: '',
-            priceUpdate: '',
-            ratingUpdate: '',
-            warranty_yearsUpdate: '',
-            availableUpdate: '',
-            idDel: ''
+            ProductState: null,
+            name: null,
+            type: null,
+            price: null,
+            rating: null,
+            warranty_years: null,
+            available: null,
+            idUpdate: null,
+            nameUpdate: null,
+            typeUpdate: null,
+            priceUpdate: null,
+            ratingUpdate: null,
+            warranty_yearsUpdate: null,
+            availableUpdate: null,
+            idDel: null
         }
     }
 
@@ -51,11 +51,9 @@ class Product extends React.Component {
 
     /* ---------------
     postData() -> Create Product with informations given in the 'data' variable
-    (Working with manual declaration of data but doesnt work with
-    'this.state.*' still dont know why ^^)
     --------------- */
 
-    postData() {
+    postData = () => {
 
         const data = {
             "name": this.state.name,
@@ -74,19 +72,17 @@ class Product extends React.Component {
                 console.log(err);
             })
 
-    }
+        this.refreshPage()
 
-    /*onUpdateData() {
-        const { nameUpdate, typeUpdate, priceUpdate, ratingUpdate, warranty_yearsUpdate, availableUpdate } = this.state;
-    }*/
+    }
 
     /* ---------------
     updateData() -> Update Product with informations given in the 'data' variable
-    (Working with manual declaration of data but doesnt work with
-    'this.state.*' still dont know why ^^)
     --------------- */
 
-    updateData(id) {
+    updateData = () => {
+
+        const id = this.state.idUpdate
 
         const data = {
             "name": this.state.nameUpdate,
@@ -107,19 +103,15 @@ class Product extends React.Component {
                 console.log(err);
             })
 
-    }
+            this.refreshPage()
 
-    /*onDetData() {
-        const { idDel } = this.state;
-    }*/
+    }
 
     /* ---------------
     delData() -> Delete Product with the 'id' given in the TextField
-    (Working with manual declaration of data but doesnt work with
-    'this.state.*' still dont know why ^^)
     --------------- */
 
-    delData() {
+    delData = () => {
 
         const id = this.state.idDel;
         const url = "http://localhost:3001/products/" + id;
@@ -132,6 +124,30 @@ class Product extends React.Component {
                 console.log(err);
             })
 
+        this.refreshPage()
+
+    }
+
+    /* ---------------
+    refreshPage() -> Reload page automaticaly, to update data inside
+    the Product's Board at the top of the page  
+    --------------- */
+
+    refreshPage = () => {
+        window.location.reload(false);
+    }
+
+    /* ---------------
+    handleTextFieldChange() -> The missing piece of my Project ^^
+    Pretty impressive function that take the "name" of the "TextField"
+    to change value of the "state variable" that has the same name 
+    --------------- */
+
+    handleTextFieldChange = (event) => {
+        console.log(event)
+        this.setState({
+            [event.target.name]: event.target.value
+        })
     }
 
     // ----- View -----
@@ -146,49 +162,55 @@ class Product extends React.Component {
                     <div style={{marginBottom: '15px'}}>
                     <TextField
                         label="Name"
+                        name="name"
                         variant="outlined"
                         placeholder="Enter Name"
-                        onChangeText={(name) => this.setState({ name })}
+                        onChange={this.handleTextFieldChange}
                     />
                     </div>
                     <div style={{marginBottom: '15px'}}>
                     <TextField
                         label="Type"
+                        name="type"
                         variant="outlined"
                         placeholder="Enter Type"
-                        onChangeText={(type) => this.setState({ type })}
+                        onChange={this.handleTextFieldChange}
                     />
                     </div>
                     <div style={{marginBottom: '15px'}}>
                     <TextField
                         label="Rating"
+                        name="rating"
                         variant="outlined"
                         placeholder="Enter Rating"
-                        onChangeText={(rating) => this.setState({ rating })}
+                        onChange={this.handleTextFieldChange}
                     />
                     </div>
                     <div style={{marginBottom: '15px'}}>
                     <TextField
                         label="Price"
+                        name="price"
                         variant="outlined"
                         placeholder="Enter Price"
-                        onChangeText={(price) => this.setState({ price })}
+                        onChange={this.handleTextFieldChange}
                     />
                     </div>
                     <div style={{marginBottom: '15px'}}>
                     <TextField
                         label="Warranty Years"
+                        name="warranty_years"
                         variant="outlined"
                         placeholder="Enter Warranty Years"
-                        onChangeText={(warranty_years) => this.setState({ warranty_years })}
+                        onChange={this.handleTextFieldChange}
                     />
                     </div>
                     <div style={{marginBottom: '15px'}}>
                     <TextField
                         label="Available"
+                        name="available"
                         variant="outlined"
                         placeholder="True or False"
-                        onChangeText={(available) => this.setState({ available })}
+                        onChange={this.handleTextFieldChange}
                     />
                     </div>
                 </form>
@@ -201,61 +223,68 @@ class Product extends React.Component {
                 <div style={{marginBottom: '15px'}}>
                     <TextField
                         label="Id"
+                        name="idUpdate"
                         variant="outlined"
                         placeholder="Enter Id"
-                        onChangeText={(idUpdate) => this.setState({ idUpdate })}
+                        onChange={this.handleTextFieldChange}
                     />
                     </div>
                     <div style={{marginBottom: '15px'}}>
                     <TextField
                         label="Name"
+                        name="nameUpdate"
                         variant="outlined"
                         placeholder="Enter Name"
-                        onChangeText={(name) => this.setState({ name })}
+                        onChange={this.handleTextFieldChange}
                     />
                     </div>
                     <div style={{marginBottom: '15px'}}>
                     <TextField
                         label="Type"
+                        name="typeUpdate"
                         variant="outlined"
                         placeholder="Enter Type"
-                        onChangeText={(type) => this.setState({ type })}
+                        onChange={this.handleTextFieldChange}
                     />
                     </div>
                     <div style={{marginBottom: '15px'}}>
                     <TextField
                         label="Rating"
+                        name="ratingUpdate"
                         variant="outlined"
                         placeholder="Enter Rating"
-                        onChangeText={(rating) => this.setState({ rating })}
+                        onChange={this.handleTextFieldChange}
                     />
                     </div>
                     <div style={{marginBottom: '15px'}}>
                     <TextField
                         label="Price"
+                        name="priceUpdate"
                         variant="outlined"
                         placeholder="Enter Price"
-                        onChangeText={(price) => this.setState({ price })}
+                        onChange={this.handleTextFieldChange}
                     />
                     </div>
                     <div style={{marginBottom: '15px'}}>
                     <TextField
                         label="Warranty Years"
+                        name="warranty_yearsUpdate"
                         variant="outlined"
                         placeholder="Enter Warranty Years"
-                        onChangeText={(warranty_years) => this.setState({ warranty_years })}
+                        onChange={this.handleTextFieldChange}
                     />
                     </div>
                     <div style={{marginBottom: '15px'}}>
                     <TextField
                         label="Available"
+                        name="availableUpdate"
                         variant="outlined"
                         placeholder="True or False"
-                        onChangeText={(available) => this.setState({ available })}
+                        onChange={this.handleTextFieldChange}
                     />
                     </div>
                 </form>
-                    <button onClick={this.updateData(this.state.idUpdate)}>Update</button>
+                    <button onClick={this.updateData}>Update</button>
                     </div>
                     <div>
                     <h3>Delete Product</h3>
@@ -263,9 +292,10 @@ class Product extends React.Component {
                             <div style={{marginBottom: '15px'}}>
                             <TextField
                                 label="Id"
+                                name="idDel"
                                 variant="outlined"
                                 placeholder="Enter Id"
-                                onChangeText={(idDel) => this.setState({ idDel })}
+                                onChange={this.handleTextFieldChange}
                             />
                             </div>
                         </form>

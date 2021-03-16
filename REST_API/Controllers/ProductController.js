@@ -3,7 +3,7 @@ const Product = require('../models/productModel')
 
 /* ---------------
 Return informations of all Products inside the Database's table if worked and
-specific error message if isnt, in json
+specific error message if didnt, in json
 --------------- */
 
 exports.get_all_product = async(req, res) => {
@@ -17,7 +17,7 @@ exports.get_all_product = async(req, res) => {
 
 /* ---------------
 Return informations of specific Product by given his {id} if worked and
-specific error message if isnt, in json
+specific error message if didnt, in json
 --------------- */
 
 exports.get_product_by_id = (req, res) => {
@@ -26,7 +26,7 @@ exports.get_product_by_id = (req, res) => {
 
 /* ---------------
 Create a Product and return informations of new Product if worked and
-specific error message if isnt, in json
+specific error message if didnt, in json
 --------------- */
 
 exports.create_product = async(req, res) => {
@@ -50,7 +50,7 @@ exports.create_product = async(req, res) => {
 
 /* ---------------
 Update a specific Product given by {id} and return informations of updated Product if worked and
-specific error message if isnt, in json
+specific error message if didnt, in json
 --------------- */
 
 exports.update_product_by_id = async(req, res) => {
@@ -82,7 +82,7 @@ exports.update_product_by_id = async(req, res) => {
 
 /* ---------------
 Delete a specific Product given by {id} and return informations of deleted Product if worked and
-specific error message if isnt, in json
+specific error message if didnt, in json
 --------------- */
 
 exports.delete_product_by_id = async(req, res) => {
